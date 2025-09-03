@@ -15,7 +15,8 @@ const LoginForm: React.FC = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginFormData>({ mode: "onSubmit" });
 
-  const { backendUrl, setIsLoggedin, setUserData } = useContext(AppContext);
+  const { backendUrl, setIsLoggedin, setUserData, getUserData } =
+    useContext(AppContext);
 
   const navigate = useNavigate();
   const onSubmitHandler = async (data: LoginFormData) => {
@@ -35,7 +36,7 @@ const LoginForm: React.FC = () => {
       if (response.data.success) {
         setIsLoggedin(true);
         setUserData(response.data.user);
-        // await getUserData();
+        await getUserData();
         navigate("/home");
         toast.success(response.data.message);
       } else {
