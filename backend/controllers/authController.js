@@ -105,7 +105,16 @@ export const login = async (req, res) => {
       sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
       maxAge: 7 * 24 * 60 * 1000,
     });
-    return res.json({ success: true, message: "Login successful" });
+    return res.json({
+      success: true,
+      message: "Login successful",
+      user: {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      },
+    });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }

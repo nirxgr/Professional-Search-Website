@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { LoginFormData } from "../../shared/interfaces/auth.interface.ts";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets.js";
@@ -16,7 +16,7 @@ const LoginForm: React.FC = () => {
   } = useForm<LoginFormData>({ mode: "onSubmit" });
 
   const { backendUrl, getUserData } = useContext(AppContext);
-
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const onSubmitHandler = async (data: LoginFormData) => {
     try {
@@ -33,6 +33,7 @@ const LoginForm: React.FC = () => {
       );
 
       if (response.data.success) {
+        setUser(response.data.user);
         await getUserData();
         navigate("/home");
         toast.success(response.data.message);
