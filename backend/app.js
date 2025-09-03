@@ -14,10 +14,7 @@ import professionRouter from "./routes/professionRoutes.js";
 dotenv.config();
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://khojipro.vercel.app/",
-];
+const allowedOrigins = ["http://localhost:5173", "https://khojipro.vercel.app"];
 
 app.use(
   cors({
