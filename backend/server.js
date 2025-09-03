@@ -5,7 +5,13 @@ import cors from "cors";
 const port = process.env.PORT || 3000;
 connectDB();
 
-app.use(cors({ origin: "*" }));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://professional-search-website.vercel.app",
+];
+
+app.use(cors({ origin: allowedOrigins, credentials: true }));
+app.use(express.json());
 
 //Starting the server in a port
 app.listen(port, () => {
