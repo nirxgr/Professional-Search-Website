@@ -23,10 +23,14 @@ const LoginForm: React.FC = () => {
       axios.defaults.withCredentials = true;
       const { email, password } = data;
 
-      const response = await axios.post(backendUrl + "/api/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        backendUrl + "/api/auth/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
 
       if (response.data.success) {
         await getUserData();
