@@ -1,5 +1,6 @@
 import app from "./app.js";
 import connectDB from "./config/mongodb.js";
+import express from "express";
 import cors from "cors";
 
 const port = process.env.PORT || 3000;
