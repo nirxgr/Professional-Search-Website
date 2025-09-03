@@ -35,7 +35,6 @@ const LoginForm: React.FC = () => {
 
       if (response.data.success) {
         setIsLoggedin(true);
-        setUserData(response.data.user);
         await getUserData();
         navigate("/home");
         toast.success(response.data.message);
