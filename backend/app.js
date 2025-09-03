@@ -58,11 +58,4 @@ app.get("/", (req, res) => {
   res.send("This is the landing page.");
 });
 
-app.use((err, req, res, next) => {
-  if (err.message === "Not allowed by CORS") {
-    return res.status(403).json({ success: false, message: err.message });
-  }
-  next(err);
-});
-
 export default app;
